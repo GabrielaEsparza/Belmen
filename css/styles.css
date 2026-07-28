@@ -1,0 +1,1882 @@
+/* ==========================================================================
+   BELMEN — HOJA DE ESTILOS PRINCIPAL
+   ==========================================================================
+
+   CÓMO ESTÁ ORGANIZADO ESTE ARCHIVO (léelo antes de tocar nada):
+
+   1. TOKENS DE DISEÑO ......... variables :root (colores, tipografía,
+                                  espaciados, radios, sombras). Si quieres
+                                  cambiar UN color o tamaño en TODO el sitio,
+                                  ES AQUÍ donde lo cambias. No busques colores
+                                  sueltos más abajo: casi todo usa var(--...).
+   2. RESET / BASE ............. normaliza el navegador, tipografía base.
+   3. UTILIDADES ................ clases reutilizables (contenedor, botones,
+                                  etiquetas "eyebrow", badges, chips).
+   4. COMPONENTES POR SECCIÓN .... un bloque por sección del sitio, en el
+                                  mismo orden en que aparecen en index.html
+                                  (Header, Hero, Nosotros, Colecciones,
+                                  Fabricamos, Distribuidores, Contacto, Footer)
+   5. ANIMACIONES / UTILIDADES JS  clases que el script.js activa (scroll
+                                  reveal, menú móvil, header con sombra).
+   6. RESPONSIVE ................ media queries, agrupadas al final.
+
+   REGLA DE ORO: cada sección tiene su propio bloque con comentario grande
+   "SECCIÓN: ..." para que puedas usar Ctrl+F y saltar directo ahí.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. TOKENS DE DISEÑO
+   ==========================================================================
+   Paleta: azul marino (marca/base), dorado (acento/premium), crema (fondos
+   claros). Inspirada directamente en el diseño de Figma proporcionado.
+   ========================================================================== */
+
+:root {
+
+  /* --- Color: Azul marino (color principal de marca) ------------------- */
+  --color-navy-900: #081b31;   /* el más oscuro: header, footer, secciones oscuras */
+  --color-navy-800: #0e2340;   /* fondo de tarjetas/inputs sobre secciones oscuras */
+  --color-navy-700: #16304f;   /* bordes / hover sobre fondo oscuro */
+  --color-navy-600: #1f3d63;   /* detalles, líneas sobre fondo oscuro */
+
+  /* --- Color: Dorado (acento premium, único acento de color fuerte) ----- */
+  --color-gold-500: #c9a24a;   /* dorado principal: CTAs, links activos, íconos */
+  --color-gold-600: #b38f3c;   /* dorado hover/activo (más oscuro) */
+  --color-gold-100: #f4e9d2;   /* dorado muy claro, para fondos sutiles */
+
+  /* --- Color: Neutros claros (fondos y texto sobre fondo claro) --------- */
+  --color-cream-50:  #f8f5ef;  /* fondo general de secciones claras */
+  --color-cream-100: #f1ece2;  /* fondo de tarjetas dentro de secciones claras */
+  --color-white:     #ffffff;
+
+  /* --- Color: Texto ------------------------------------------------------ */
+  --color-ink-900: #9ab4df;    /* texto principal sobre fondo claro (casi negro-azulado) */
+  --color-ink-600: #5b6673;    /* texto secundario / párrafos sobre fondo claro */
+  --color-ink-400: #93a0ac;    /* texto terciario / placeholders sobre fondo claro */
+
+  --color-paper-900: #ffffff;  /* texto principal sobre fondo oscuro */
+  --color-paper-500: #aab6c4;  /* texto secundario sobre fondo oscuro */
+  --color-paper-300: #7c8ba0;  /* texto terciario sobre fondo oscuro */
+
+  /* --- Color: Bordes ------------------------------------------------------ */
+  --color-border-light: #e4ddcf; /* bordes sobre fondo claro */
+  --color-border-dark:  #22375a; /* bordes sobre fondo oscuro */
+
+  /* --- Color: Estados / utilidades (badges, whatsapp) -------------------- */
+  --color-success-500: #25d366; /* verde WhatsApp, botón de envío del formulario */
+  --color-success-600: #1fb459;
+  --color-danger-500:  #c1502e; /* badge "NUEVO" */
+  --color-info-500:    #2f6f52; /* badge "ENTREGA INMEDIATA" */
+
+  /* ------------------------------------------------------------------------
+     Tipografía — SOLO dos familias en todo el sitio:
+     - Display (serif elegante): títulos, logo, cifras grandes.
+     - Sans (texto utilitario): navegación, párrafos, formularios, etiquetas.
+     ---------------------------------------------------------------------- */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+
+  /* Escala tipográfica (tamaño de fuente) */
+  --text-xs:   0.75rem;   /* 12px — etiquetas pequeñas, footnotes */
+  --text-sm:   0.875rem;  /* 14px — texto de apoyo, meta información */
+  --text-base: 1rem;      /* 16px — párrafos */
+  --text-md:   1.125rem;  /* 18px — párrafos destacados */
+  --text-lg:   1.375rem;  /* 22px — subtítulos */
+  --text-xl:   1.75rem;   /* 28px — títulos de tarjeta / sección pequeña */
+  --text-2xl:  2.25rem;   /* 36px — títulos de sección (H2) */
+  --text-3xl:  3rem;      /* 48px — título de sección grande */
+  --text-4xl:  3.75rem;   /* 60px — título del Hero (desktop) */
+
+  /* Peso de fuente */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* Interletrado (tracking) — se usa mucho en esta marca para textos en
+     mayúsculas (nav, eyebrows, badges) para lograr el look "premium" */
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.12em;
+
+  /* Interlineado (leading) */
+  --leading-tight: 1.1;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  /* ------------------------------------------------------------------------
+     Espaciado — escala base de 4px. Úsalo en vez de números sueltos para
+     que todo el ritmo vertical del sitio quede consistente.
+     ---------------------------------------------------------------------- */
+  --space-1: 0.25rem;   /* 4px  */
+  --space-2: 0.5rem;    /* 8px  */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* Ancho máximo del contenido y márgenes laterales */
+  --container-max: 1240px;
+  --container-padding: clamp(1.25rem, 4vw, 3rem);
+
+  /* Bordes redondeados — el diseño es mayormente cuadrado/anguloso (look
+     editorial/premium), así que los radios son sutiles, casi nunca grandes */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  /* Sombras — discretas, solo para dar profundidad a tarjetas y header */
+  --shadow-sm: 0 1px 2px rgba(10, 28, 51, 0.06);
+  --shadow-md: 0 8px 24px rgba(10, 28, 51, 0.08);
+  --shadow-lg: 0 20px 48px rgba(10, 28, 51, 0.16);
+
+  /* Transiciones — timing consistente para hovers y reveal on scroll */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 600ms;
+
+  /* Altura del header fijo — usado para el scroll-padding de anclas */
+  --header-height: 84px;
+}
+
+
+/* ==========================================================================
+   2. RESET / BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-900);
+  background: var(--color-cream-50);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-ink-900);
+}
+
+/* Foco visible para navegación con teclado — accesibilidad, no lo quites */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+
+/* ==========================================================================
+   3. UTILIDADES REUTILIZABLES
+   ========================================================================== */
+
+/* Contenedor centrado — envuelve el contenido de cada sección */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* "Eyebrow": la línea pequeña en mayúsculas arriba de cada título de
+   sección (ej. "SOBRE BELMEN", "NUESTRA FÁBRICA"). Es la firma tipográfica
+   de la marca: guion + texto dorado con mucho tracking. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold-500);
+  margin-bottom: var(--space-4);
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--color-gold-500);
+}
+
+.eyebrow--light {
+  color: var(--color-gold-500);
+}
+
+/* Encabezado de sección: eyebrow + H2 + párrafo intro, patrón repetido */
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-12);
+}
+
+.section-head__title {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.section-head__desc {
+  font-size: var(--text-md);
+  color: var(--color-ink-600);
+  line-height: var(--leading-snug);
+}
+
+.section-head--on-dark .section-head__title { color: var(--color-paper-900); }
+.section-head--on-dark .section-head__desc  { color: var(--color-paper-500); }
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+.section-head--center .eyebrow { justify-content: center; }
+.section-head--center .eyebrow::before { display: none; }
+
+/* Padding vertical estándar de cada <section> */
+.section {
+  padding-block: var(--space-24);
+}
+
+.section--tight {
+  padding-block: var(--space-16);
+}
+
+.section--navy {
+  background: var(--color-navy-900);
+}
+
+.section--cream {
+  background: var(--color-cream-50);
+}
+
+/* --------------------------------------------------------------------------
+   Botones — un único componente .btn con variantes, así todos los botones
+   del sitio se mantienen consistentes.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--gold {
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+}
+.btn--gold:hover {
+  background: var(--color-gold-600);
+}
+
+.btn--outline-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--color-paper-900);
+}
+.btn--outline-light:hover {
+  border-color: var(--color-paper-900);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn--outline-dark {
+  background: transparent;
+  border-color: var(--color-navy-900);
+  color: var(--color-navy-900);/* Variante "solo texto" — usada en el botón de Cotizar del header, para
+   que no compita visualmente con el fondo transparente/navy del navbar */
+.btn--text-gold {
+  background: transparent;
+  border-color: transparent;
+  padding: var(--space-2) 0;
+  color: var(--color-gold-500);
+  border-bottom: 1px solid transparent;
+}
+
+.btn--text-gold:hover {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-gold-600);
+  border-bottom-color: var(--color-gold-500);
+}
+}
+
+
+
+.btn--outline-dark:hover {
+  background: var(--color-navy-900);
+  color: var(--color-paper-900);
+}
+
+.btn--success {
+  background: var(--color-success-500);
+  color: var(--color-white);
+  width: 100%;
+  padding-block: var(--space-5);
+  font-size: var(--text-base);
+}
+.btn--success:hover {
+  background: var(--color-success-600);
+}
+
+.btn--sm {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-xs);
+}
+
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Badges — etiquetas de color sobre las fotos de producto.
+   Cambia el color de cada variante aquí; el HTML solo trae la clase.
+   -------------------------------------------------------------------------- */
+.badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+  z-index: 2;
+}
+
+.badge--bestseller   { background: var(--color-gold-500); color: var(--color-navy-900); }
+.badge--available    { background: var(--color-info-500); }
+.badge--new          { background: var(--color-danger-500); }
+.badge--customizable { background: var(--color-navy-900); }
+
+/* Chips/Pills — usados en "Nosotros" (Taller propio, etc.) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  border: 1px solid var(--color-navy-900);
+  border-radius: var(--radius-pill);
+  color: var(--color-navy-900);
+}
+
+
+/* ==========================================================================
+   4. COMPONENTES POR SECCIÓN
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Header / navegación
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(8, 27, 49, var(--header-scroll, 0)); /* --color-navy-900 en rgba */
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+/* Cuando ya pasó el umbral, además le damos la sombra y el borde */
+.header.is-scrolled {
+  box-shadow: var(--shadow-md);
+  border-bottom-color: var(--color-border-dark);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand img {
+  height: 58px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav__link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-500);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid transparent;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+
+.nav__link:hover,
+.nav__link.is-active {
+  color: var(--color-paper-900);
+  border-color: var(--color-gold-500);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Botón hamburguesa — solo visible en móvil, ver media queries */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-paper-900);
+  transition: transform var(--duration-base) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--header-height);
+  color: var(--color-paper-900);
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay oscuro sobre la foto para que el texto blanco/dorado siempre
+   se lea bien, sin importar la foto que se use */
+.hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 20, 38, 0.55) 0%, rgba(10, 20, 38, 0.72) 55%, rgba(10, 20, 38, 0.92) 100%);
+}
+
+.hero__content {
+  width: 100%;
+  padding-block: var(--space-16);
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-paper-500);
+  margin-bottom: var(--space-6);
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-paper-500);
+}
+
+.hero__title {
+  font-size: var(--text-4xl);
+  line-height: 1.05;
+  max-width: 16ch;
+  margin-bottom: var(--space-6);
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--color-gold-500);
+}
+
+.hero__desc {
+  max-width: 46ch;
+  font-size: var(--text-md);
+  color: var(--color-paper-500);
+  margin-bottom: var(--space-8);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-16);
+}
+
+/* Barra de cifras (50,000+ prendas/mes, etc.) */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-border-dark);
+  padding-top: var(--space-8);
+}
+
+.stats__item {
+  padding-inline-end: var(--space-6);
+}
+
+.stats__number {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-paper-900);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stats__label {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-300);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Nosotros
+   -------------------------------------------------------------------------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-12);
+}
+
+.about__body p {
+  color: var(--color-ink-600);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-6);
+}
+
+.about__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Cuadrícula de fotos estilo "collage" — se reutiliza en Nosotros y
+   Fabricamos con la clase modificadora correspondiente */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-5);
+}
+
+.photo-grid__col {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-cream-100);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+
+.photo-frame:hover img {
+  transform: scale(1.04);
+}
+
+.photo-frame__caption {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-900);
+  z-index: 2;
+}
+
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,20,38,0) 55%, rgba(10,20,38,0.65) 100%);
+  pointer-events: none;
+}
+
+.photo-frame--tall   { aspect-ratio: 3 / 4; }
+.photo-frame--wide   { aspect-ratio: 4 / 3; }
+.photo-frame--square { aspect-ratio: 1 / 1; }
+.photo-frame--big    { aspect-ratio: 4 / 5; }
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Colecciones (catálogo)
+   -------------------------------------------------------------------------- */
+.collections__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+/* Tabs de filtro (Todos / Escolares / Deportivos / ...) */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-10);
+}
+
+.filters__btn {
+  padding-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+
+.filters__btn:hover {
+  color: var(--color-ink-900);
+}
+
+.filters__btn.is-active {
+  color: var(--color-ink-900);
+  border-color: var(--color-gold-500);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.product-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.product-card:hover,
+.product-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.product-card:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--color-cream-100);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__body {
+  padding: var(--space-5);
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-3);
+}
+
+.product-card__meta {
+  display: grid;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.product-card__meta-row {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-ink-600);
+}
+
+.product-card__meta-label {
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+  min-width: 70px;
+}
+
+.product-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+  transition: gap var(--duration-fast) var(--ease-standard);
+}
+
+.product-card__cta:hover {
+  gap: var(--space-3);
+}
+
+.collections__more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-12);
+}
+
+/* --- Tarjetas de categoría (primer nivel del catálogo) ----------------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-16);
+}
+
+.category-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.category-card__media {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: var(--color-cream-100);
+}
+
+.category-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+
+.category-card:hover .category-card__media img {
+  transform: scale(1.05);
+}
+
+.category-card__body {
+  padding: var(--space-5);
+}
+
+.category-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+.category-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-ink-600);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-5);
+}
+
+.category-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+  transition: gap var(--duration-fast) var(--ease-standard);
+}
+
+.category-card__btn:hover {
+  gap: var(--space-3);
+}
+
+/* --- Layout catálogo: grid principal + sidebar delgado de proceso ------ */
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+/* Buscador: mismo look editorial que el resto del sitio, sin bordes
+   redondeados grandes ni sombras llamativas */
+.catalog-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  max-width: 360px;
+}
+
+.catalog-search__icon {
+  position: absolute;
+  left: var(--space-4);
+  width: 16px;
+  height: 16px;
+  color: var(--color-ink-400);
+  pointer-events: none;
+}
+
+.catalog-search__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-10);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-ink-900);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.catalog-search__input::placeholder {
+  color: var(--color-ink-400);
+}
+
+.catalog-search__input:focus {
+  border-color: var(--color-gold-500);
+}
+
+/* Dentro del toolbar, los filtros pierden el margen inferior/borde propio
+   para no duplicar líneas junto al buscador */
+.catalog-toolbar .filters {
+  margin-bottom: 0;
+  border-bottom: none;
+  gap: var(--space-6);
+}
+
+.catalog-empty {
+  padding: var(--space-8) 0;
+  color: var(--color-ink-600);
+  font-size: var(--text-sm);
+}
+
+.catalog-empty a {
+  color: var(--color-gold-600);
+  text-decoration: underline;
+}
+
+/* Nota "Cotización personalizada" en vez de precio */
+.product-card__price-note {
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--color-ink-400);
+  margin-bottom: var(--space-3);
+}
+
+/* --- Sidebar delgado: "Así trabajamos" (proceso de compra) ------------- */
+.catalog-process {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-6));
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-left: 2px solid var(--color-gold-500);
+  border-radius: var(--radius-md);
+}
+
+.catalog-process__title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+  margin-bottom: var(--space-5);
+}
+
+.catalog-process__list {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.catalog-process__item {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.catalog-process__num {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold-500);
+  line-height: var(--leading-snug);
+}
+
+.catalog-process__name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink-900);
+  margin-bottom: 2px;
+}
+
+.catalog-process__desc {
+  font-size: var(--text-xs);
+  color: var(--color-ink-600);
+  line-height: var(--leading-snug);
+}
+
+.catalog-process__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-gold-600);
+  transition: gap var(--duration-fast) var(--ease-standard);
+}
+
+.catalog-process__cta:hover {
+  gap: var(--space-3);
+}
+
+/* --- CTA de cierre del catálogo (fondo navy, ancho completo) ----------- */
+.catalog-cta {
+  background: var(--color-navy-900);
+  margin-top: var(--space-24);
+  /* Compensa el padding-bottom de .section para que el navy llegue hasta
+     el borde inferior real de la sección, sin franja cream de por medio */
+  margin-bottom: calc(-1 * var(--space-24));
+}
+
+.catalog-cta__inner {
+  padding-block: var(--space-16);
+  text-align: center;
+}
+
+.catalog-cta__title {
+  font-size: var(--text-2xl);
+  color: var(--color-paper-900);
+  margin-bottom: var(--space-4);
+}
+
+.catalog-cta__desc {
+  max-width: 46ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
+  color: var(--color-paper-500);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Modal de producto
+   Se abre al hacer clic en cualquier tarjeta de "Colecciones". Oculto por
+   defecto (display: none); js/script.js le agrega la clase
+   .product-modal--open para mostrarlo.
+   -------------------------------------------------------------------------- */
+.product-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.product-modal.product-modal--open {
+  display: flex;
+}
+
+.product-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 38, 0.72);
+  backdrop-filter: blur(2px);
+  animation: modal-fade var(--duration-base) var(--ease-standard);
+}
+
+.product-modal__dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 880px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: modal-pop var(--duration-base) var(--ease-standard);
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.product-modal__close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-ink-900);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.product-modal__close:hover {
+  background: var(--color-cream-100);
+}
+.product-modal__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.product-modal__media {
+  position: relative;
+  background: var(--color-cream-100);
+  min-height: 280px;
+}
+
+.product-modal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-modal__media .badge {
+  top: var(--space-5);
+  left: var(--space-5);
+}
+
+.product-modal__body {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-modal__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-5);
+}
+
+.product-modal__meta {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.product-modal__meta-row {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-600);
+}
+
+.product-modal__meta-label {
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+  min-width: 80px;
+  font-size: var(--text-xs);
+}
+
+.product-modal__desc {
+  color: var(--color-ink-600);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-8);
+}
+
+.product-modal__body .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Fabricamos
+   -------------------------------------------------------------------------- */
+.factory__intro {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-16);
+  align-items: end;
+  margin-bottom: var(--space-12);
+}
+
+.factory__intro .section-head {
+  margin-bottom: 0;
+}
+
+.factory__intro-copy {
+  color: var(--color-ink-600);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+}
+
+.factory-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-5);
+}
+
+.factory-grid__col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Personalización
+   -------------------------------------------------------------------------- */
+.custom-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.custom-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-6) var(--space-6);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background-color var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard);
+}
+
+.custom-tab:last-child {
+  border-bottom: none;
+}
+
+.custom-tab__num {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink-400);
+  flex-shrink: 0;
+}
+
+.custom-tab__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.custom-tab__name {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink-900);
+}
+
+.custom-tab__desc {
+  font-size: var(--text-sm);
+  color: var(--color-ink-600);
+  line-height: var(--leading-snug);
+  max-width: 42ch;
+}
+
+.custom-tab__arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--color-ink-400);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.custom-tab:hover {
+  background: var(--color-cream-100);
+}
+
+/* Pestaña activa: fondo navy, igual que el diseño de referencia */
+.custom-tab.is-active {
+  background: var(--color-navy-900);
+}
+
+.custom-tab.is-active .custom-tab__num,
+.custom-tab.is-active .custom-tab__desc {
+  color: var(--color-paper-500);
+}
+
+.custom-tab.is-active .custom-tab__name {
+  color: var(--color-paper-900);
+}
+
+.custom-tab.is-active .custom-tab__arrow {
+  color: var(--color-gold-500);
+  transform: translateX(4px);
+}
+
+.custom-preview {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.custom-preview__media {
+  position: absolute;
+  inset: 0;
+}
+
+.custom-preview__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.custom-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,27,49,0) 40%, rgba(8,27,49,0.88) 100%);
+}
+
+.custom-preview__body {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-8);
+  color: var(--color-paper-900);
+}
+
+.custom-preview__desc {
+  font-size: var(--text-sm);
+  color: var(--color-paper-500);
+  line-height: var(--leading-snug);
+  max-width: 40ch;
+  margin-bottom: var(--space-6);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Distribuidores
+   -------------------------------------------------------------------------- */
+.distributors {
+  color: var(--color-paper-900);
+}
+
+.distributors__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.distributors__desc {
+  color: var(--color-paper-500);
+  font-size: var(--text-md);
+  margin-bottom: var(--space-8);
+  max-width: 48ch;
+}
+
+.checklist {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  font-size: var(--text-base);
+  color: var(--color-paper-900);
+}
+
+.checklist__icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+  border-radius: var(--radius-sm);
+  margin-top: 2px;
+}
+
+.checklist__icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.distributors__media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.distributors__media .photo-frame:first-child {
+  grid-row: span 2;
+}
+
+.stat-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+}
+
+.stat-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(201, 162, 74, 0.14);
+  color: var(--color-gold-500);
+}
+
+.stat-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.stat-card__number {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+
+.stat-card__label {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-300);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Contacto
+   -------------------------------------------------------------------------- */
+.contact {
+  color: var(--color-paper-900);
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-20);
+}
+
+.contact__desc {
+  color: var(--color-paper-500);
+  font-size: var(--text-md);
+  margin-bottom: var(--space-10);
+  max-width: 42ch;
+}
+
+.contact-info {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.contact-info__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+  color: var(--color-gold-500);
+}
+
+.contact-info__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-info__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-300);
+  margin-bottom: var(--space-1);
+}
+
+.contact-info__value {
+  font-size: var(--text-base);
+  color: var(--color-paper-900);
+}
+
+.contact-form {
+  padding: var(--space-8);
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-lg);
+}
+
+.field {
+  margin-bottom: var(--space-5);
+}
+
+.field__label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-300);
+  margin-bottom: var(--space-2);
+}
+
+.field__input {
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--color-navy-900);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  color: var(--color-paper-900);
+  font-size: var(--text-base);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.field__input::placeholder {
+  color: var(--color-paper-300);
+}
+
+.field__input:focus {
+  border-color: var(--color-gold-500);
+}
+
+.form__note {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-paper-300);
+  margin-top: var(--space-3);
+}
+
+
+/* --------------------------------------------------------------------------
+   SECCIÓN: Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: var(--color-navy-900);
+  border-top: 1px solid var(--color-border-dark);
+  padding-block: var(--space-16) var(--space-8);
+  color: var(--color-paper-500);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.footer__brand .brand {
+  margin-bottom: var(--space-4);
+}
+
+.footer__tagline {
+  font-size: var(--text-sm);
+  max-width: 32ch;
+  line-height: var(--leading-snug);
+}
+
+.footer__heading {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-paper-900);
+  margin-bottom: var(--space-4);
+}
+
+.footer__links {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.footer__links a {
+  font-size: var(--text-sm);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer__links a:hover {
+  color: var(--color-gold-500);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-paper-300);
+}
+
+
+/* ==========================================================================
+   5. ANIMACIONES / GANCHOS DE JAVASCRIPT
+   ==========================================================================
+   script.js agrega la clase .is-visible cuando un elemento con la clase
+   .reveal entra en pantalla (IntersectionObserver). El estado inicial
+   (oculto) se define aquí para que sin JS el contenido igual sea visible.
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Si JS no carga por alguna razón, no queremos contenido invisible */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__top { grid-template-columns: 1.4fr 1fr 1fr; }
+
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* El sidebar de proceso deja de flotar al lado y pasa a vivir arriba
+     del grid de productos, ya en horizontal para no alargar la página */
+  .catalog-layout { grid-template-columns: 1fr; }
+  .catalog-process {
+    position: static;
+    order: -1;
+  }
+  .catalog-process__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .custom-panel { grid-template-columns: 1fr; }
+  .custom-preview { min-height: 320px; }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --text-4xl: 2.75rem;
+    --text-3xl: 2.25rem;
+    --header-height: 72px;
+  }
+
+  /* El botón "Cotizar" (dentro de .header__actions) se queda visible en
+     todos los tamaños de pantalla — es el ÚNICO botón de cotizar del
+     header. Lo que se oculta es la lista de links (.nav). */
+  .nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Menú móvil: el mismo .nav se reutiliza pero como panel a pantalla
+     completa cuando se le agrega .nav--open desde script.js */
+  .nav.nav--open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-8) var(--container-padding);
+    background: var(--color-navy-900);
+    overflow-y: auto;
+  }
+
+  .about__grid,
+  .factory__intro,
+  .distributors__grid,
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .factory__intro { align-items: start; }
+
+  .photo-grid,
+  .factory-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--space-6); }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer__top { grid-template-columns: 1fr 1fr; }
+
+  .product-modal__dialog {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+  }
+
+  .product-modal__media {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section { padding-block: var(--space-16); }
+
+  .hero { min-height: 100vh; }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+
+  .stats { grid-template-columns: repeat(2, 1fr); }
+
+  .photo-grid,
+  .factory-grid,
+  .factory-grid__col,
+  .product-grid,
+  .category-grid,
+  .distributors__media {
+    grid-template-columns: 1fr;
+  }
+
+  .distributors__media .photo-frame:first-child { grid-row: auto; }
+
+  .collections__head { align-items: flex-start; }
+
+  .filters { gap: var(--space-5); overflow-x: auto; }
+
+  .catalog-toolbar { flex-direction: column; align-items: stretch; }
+  .catalog-search { max-width: none; }
+  .catalog-process__list { grid-template-columns: 1fr; }
+  .catalog-cta__title { font-size: var(--text-xl); }
+
+  .custom-tab { padding: var(--space-5); gap: var(--space-3); }
+  .custom-tab__desc { display: none; }
+  .custom-preview { min-height: 260px; }
+  .custom-preview__body { padding: var(--space-6); }
+
+  .footer__top { grid-template-columns: 1fr; }
+
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+}

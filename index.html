@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belmen — Soluciones Textiles Integrales | Uniformes Escolares e Institucionales</title>
+  <meta name="description" content="Fabricante directo de uniformes escolares, deportivos, institucionales y personalizados. Producción en volumen, calidad certificada y entrega a todo México.">
+
+  <!--
+    TIPOGRAFÍA
+    Solo se usan 2 familias en todo el sitio (ver css/styles.css → sección 1):
+    - Playfair Display: títulos y elementos "display"
+    - Inter: texto general, navegación, formularios
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="no-js">
+
+  <!-- ======================================================================
+       HEADER / NAVEGACIÓN
+       Fijo arriba (position: fixed). script.js le agrega la clase
+       .is-scrolled cuando el usuario baja, para mostrar una sombra sutil.
+       ====================================================================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+
+      <a href="#inicio" class="brand" aria-label="Belmen — Ir al inicio">
+        <img src="assets/logo.png" alt="Belmen">
+      </a>
+
+      <!-- Un solo botón "Cotizar": vive en .header__actions y se ve tanto
+           en escritorio como en móvil, para no repetirlo dos veces. -->
+      <nav class="nav" id="nav" aria-label="Navegación principal">
+        <a href="#nosotros" class="nav__link">Nosotros</a>
+        <a href="#colecciones" class="nav__link">Catálogo</a>
+        <a href="#fabricamos" class="nav__link">Fabricamos</a>
+        <a href="#personalizacion" class="nav__link">Personalización</a>
+        <a href="#distribuidores" class="nav__link">Distribuidores</a>
+        <a href="#contacto" class="nav__link">Contacto</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#contacto" class="btn btn--text-gold btn--sm">Cotizar</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ======================================================================
+       HERO
+       Foto de fondo: nave industrial vacía y ordenada (sin personas),
+       con overlay oscuro (ver .hero__media::after en el CSS) para que el
+       texto siempre contraste bien.
+       ====================================================================== -->
+  <section class="hero" id="inicio">
+    <div class="hero__media">
+      <img
+        src="./assets/image.png"
+        alt="Nave industrial de producción textil, amplia y ordenada">
+    </div>
+
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Fabricante directo — Cobertura nacional</p>
+
+      <h1 class="hero__title reveal">
+        Soluciones<br>
+        <em>Textiles</em><br>
+        Integrales
+      </h1>
+
+      <p class="hero__desc reveal">
+        Uniformes escolares, institucionales y personalizados directo de fábrica.
+        Producción en volumen, calidad certificada y entrega a todo México.
+      </p>
+
+      <div class="hero__actions reveal">
+        <a href="#contacto" class="btn btn--gold">
+          ¿Eres mayorista? Contáctanos
+          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#colecciones" class="btn btn--outline-light">Cotizar proyecto</a>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stats__item">
+          <p class="stats__number">50,000+</p>
+          <p class="stats__label">Prendas / mes</p>
+        </div>
+        <div class="stats__item">
+          <p class="stats__number">15+</p>
+          <p class="stats__label">Años de experiencia</p>
+        </div>
+        <div class="stats__item">
+          <p class="stats__number">800+</p>
+          <p class="stats__label">Instituciones atendidas</p>
+        </div>
+        <div class="stats__item">
+          <p class="stats__number">32</p>
+          <p class="stats__label">Estados cubiertos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       NOSOTROS
+       ====================================================================== -->
+  <section class="section section--cream" id="nosotros">
+    <div class="container">
+
+      <div class="about__grid">
+        <div class="about__body reveal">
+          <p class="eyebrow">Sobre Belmen</p>
+          <h2 class="section-head__title" style="max-width: 12ch;">
+            Fabricamos soluciones textiles para escuelas, distribuidores e instituciones.
+          </h2>
+        </div>
+
+        <div class="about__body reveal">
+          <p>
+            Con más de 15 años como fabricantes directos, hemos construido una cadena
+            de producción propia que garantiza calidad uniforme, cumplimiento de
+            pedidos en tiempo y precios competitivos para distribuidores, escuelas
+            y empresas en todo el país.
+          </p>
+          <div class="about__chips">
+            <span class="chip">Taller propio</span>
+            <span class="chip">Fabricación personalizada</span>
+            <span class="chip">Atención mayorista</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid reveal">
+        <div class="photo-frame photo-frame--big">
+          <img src="https://loremflickr.com/900/1100/sewing,tailor,workshop/all?lock=102" alt="Detalle de manos trabajando en el taller de producción de Belmen">
+          <span class="photo-frame__caption">Planta de producción — México</span>
+        </div>
+        <div class="photo-grid__col">
+          <div class="photo-frame photo-frame--wide">
+            <img src="https://loremflickr.com/900/700/warehouse,logistics,shelves/all?lock=103" alt="Área de corte y almacén, ordenado y con buena iluminación">
+            <span class="photo-frame__caption">Área de corte CNC</span>
+          </div>
+          <div class="photo-frame photo-frame--wide">
+            <img src="https://loremflickr.com/900/700/embroidery,patch,thread/all?lock=104" alt="Proceso de bordado institucional en las instalaciones de Belmen">
+            <span class="photo-frame__caption">Bordados</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       COLECCIONES
+       Filtros por categoría (JS filtra las tarjetas con data-category)
+       ====================================================================== -->
+  <section class="section section--cream" id="colecciones">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <p class="eyebrow">Catálogo mayorista 2025</p>
+        <h2 class="section-head__title">Catálogo Belmen</h2>
+        <p class="section-head__desc">
+          Explora por categoría o busca directamente el modelo que necesitas.
+          Todo lo necesario para vestir instituciones con calidad, consistencia
+          y producción a gran escala.
+        </p>
+      </div>
+
+      <!-- Tarjetas de categoría: primer nivel de navegación del catálogo.
+           Cada botón "Ver modelos" aplica el filtro correspondiente sobre
+           el grid de abajo y hace scroll hasta él (ver script.js). -->
+      <div class="category-grid reveal">
+
+        <article class="category-card">
+          <div class="category-card__media">
+            <img src="https://loremflickr.com/700/560/school,uniform,children/all?lock=501" alt="Uniformes escolares Belmen">
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__name">Uniformes Escolares</h3>
+            <p class="category-card__desc">Polos, faldas, jumpers y pantalones para todos los niveles educativos.</p>
+            <button type="button" class="category-card__btn" data-filter="escolares">
+              Ver modelos
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-card__media">
+            <img src="https://loremflickr.com/700/560/sportswear,tracksuit/all?lock=502" alt="Uniformes deportivos Belmen">
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__name">Uniformes Deportivos</h3>
+            <p class="category-card__desc">Pants, shorts y chamarras pensados para educación física y equipos.</p>
+            <button type="button" class="category-card__btn" data-filter="deportivos">
+              Ver modelos
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-card__media">
+            <img src="https://loremflickr.com/700/560/office,uniform,formal/all?lock=503" alt="Uniformes institucionales Belmen">
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__name">Uniformes Institucionales</h3>
+            <p class="category-card__desc">Camisas, pantalones y blusas de vestir para personal y empresas.</p>
+            <button type="button" class="category-card__btn" data-filter="institucionales">
+              Ver modelos
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-card__media">
+            <img src="https://loremflickr.com/700/560/embroidery,logo,textile/all?lock=504" alt="Uniformes personalizados Belmen">
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__name">Uniformes Personalizados</h3>
+            <p class="category-card__desc">Bordado, sublimación y diseños exclusivos con tu identidad institucional.</p>
+            <button type="button" class="category-card__btn" data-filter="personalizados">
+              Ver modelos
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Layout de dos columnas: catálogo (buscador + filtros + grid) y,
+           a un lado, un resumen delgado del proceso de compra que no
+           compite visualmente con los productos. -->
+      <div class="catalog-layout">
+        <div class="catalog-layout__main">
+
+          <div class="catalog-toolbar reveal">
+            <label class="catalog-search" for="catalogSearch">
+              <svg class="catalog-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="search" id="catalogSearch" class="catalog-search__input" placeholder="Buscar producto (ej. polo, falda, chamarra...)">
+            </label>
+
+            <div class="filters" id="productFilters" role="tablist" aria-label="Filtrar catálogo por categoría">
+              <button class="filters__btn is-active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+              <button class="filters__btn" data-filter="escolares" role="tab" aria-selected="false">Escolares</button>
+              <button class="filters__btn" data-filter="deportivos" role="tab" aria-selected="false">Deportivos</button>
+              <button class="filters__btn" data-filter="institucionales" role="tab" aria-selected="false">Institucionales</button>
+              <button class="filters__btn" data-filter="personalizados" role="tab" aria-selected="false">Personalizados</button>
+            </div>
+          </div>
+
+          <p class="catalog-empty" id="catalogEmpty" hidden>No encontramos productos con esa búsqueda. Prueba con otro término o <a href="#contacto">contáctanos</a> directamente.</p>
+
+          <div class="product-grid reveal" id="productGrid">
+
+        <article class="product-card" data-category="escolares" data-description="Playera tipo polo en piqué de algodón, pensada para uso diario en el salón de clases. Corte cómodo, costuras reforzadas y buena resistencia a lavados frecuentes." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--bestseller">Más vendido</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=201" alt="Playera polo blanca, uniforme escolar">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Playera Polo Escolar</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 5 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18 / XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 36 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="deportivos" data-description="Pants deportivo en línea blanca para actividades físicas y educación deportiva. Tela ligera de secado rápido con corte recto." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--available">Entrega inmediata</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=202" alt="Pants deportivo línea blanca">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Pants Línea Blanca</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18 / S–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="escolares" data-description="Falda escolar en color marino con plisado clásico. Tela de peso medio que mantiene su forma durante toda la jornada." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=203" alt="Falda escolar color marino">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Falda Escolar Marina</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="escolares" data-description="Jumper escolar tipo pichi en color marino, ideal para uniformes de nivel preescolar y primaria. Se personaliza con el logo institucional." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--customizable">Personalizable</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=204" alt="Jumper escolar color marino">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Jumper Marino</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 2 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="deportivos" data-description="Pants deportivo institucional con elástico ajustable en cintura y tobillo, pensado para clases de educación física." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=205" alt="Pants deportivo institucional">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Pants Deportivo</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18 / XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="deportivos" data-description="Short deportivo ligero y transpirable, con forro interior. Ideal para uniformes deportivos escolares." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=206" alt="Short deportivo escolar">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Short Deportivo</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18 / XS–2XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 36 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="deportivos" data-description="Chamarra deportiva con cierre frontal y bordado disponible en el pecho. Protege del frío sin perder movilidad." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--new">Nuevo</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=207" alt="Chamarra deportiva institucional">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Chamarra Deportiva</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 2–18 / XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="institucionales" data-description="Camisa de vestir institucional en corte recto, ideal para uniformes de oficina, hoteles y personal administrativo." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--customizable">Personalizable</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=208" alt="Camisa institucional de vestir">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Camisa Institucional</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="institucionales" data-description="Pantalón de vestir con corte clásico y tela antiarrugas, para uniformes ejecutivos e institucionales." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=209" alt="Pantalón de vestir institucional">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Pantalón de Vestir</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 4 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> 28–42 / XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="institucionales" data-description="Blusa institucional de manga larga, tela ligera y acabado formal para personal femenino." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=210" alt="Blusa institucional">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Blusa Institucional</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> XS–2XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="institucionales" data-description="Chaleco ejecutivo entallado, ideal para combinarse con camisa institucional en uniformes de oficina." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--new">Nuevo</span>
+            <img src="https://loremflickr.com/600/450/school,uniform/all?lock=211" alt="Chaleco ejecutivo institucional">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Chaleco Ejecutivo</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> 3 colores disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> XS–3XL</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 24 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="personalizados" data-description="Servicio de bordado personalizado sobre cualquier prenda del catálogo: logotipos institucionales, nombres y escudos." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ver detalles de este producto">
+          <div class="product-card__media">
+            <span class="badge badge--customizable">Personalizable</span>
+            <img src="https://loremflickr.com/600/450/school,uniform,embroidery/all?lock=212" alt="Uniformes con bordado personalizado">
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">Uniformes con Bordado</h3>
+            <div class="product-card__meta">
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Colores</span> Todos los disponibles</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Tallas</span> Cualquier talla</p>
+              <p class="product-card__meta-row"><span class="product-card__meta-label">Mínimo</span> 12 piezas</p>
+            </div>
+            <p class="product-card__price-note">Cotización personalizada</p>
+            <a href="#contacto" class="product-card__cta">Solicitar cotización
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+          <p class="collections__more">
+            <a href="#contacto" class="btn btn--outline-dark">Solicitar catálogo completo</a>
+          </p>
+
+        </div>
+
+        <!-- Resumen delgado del proceso de compra: solo texto, número y
+             una línea guía. No lleva fotos ni fondo oscuro para que quepa
+             al lado del catálogo sin restarle protagonismo. -->
+        <aside class="catalog-process reveal" aria-label="Proceso de compra">
+          <p class="catalog-process__title">Así trabajamos</p>
+
+          <ol class="catalog-process__list">
+            <li class="catalog-process__item">
+              <span class="catalog-process__num">01</span>
+              <div>
+                <p class="catalog-process__name">Nos contactas</p>
+                <p class="catalog-process__desc">Por WhatsApp, correo o formulario.</p>
+              </div>
+            </li>
+            <li class="catalog-process__item">
+              <span class="catalog-process__num">02</span>
+              <div>
+                <p class="catalog-process__name">Te cotizamos</p>
+                <p class="catalog-process__desc">En menos de 24 horas.</p>
+              </div>
+            </li>
+            <li class="catalog-process__item">
+              <span class="catalog-process__num">03</span>
+              <div>
+                <p class="catalog-process__name">Apruebas el diseño</p>
+                <p class="catalog-process__desc">Muestra digital o física antes de producir.</p>
+              </div>
+            </li>
+            <li class="catalog-process__item">
+              <span class="catalog-process__num">04</span>
+              <div>
+                <p class="catalog-process__name">Fabricamos</p>
+                <p class="catalog-process__desc">Te mantenemos informado en cada etapa.</p>
+              </div>
+            </li>
+            <li class="catalog-process__item">
+              <span class="catalog-process__num">05</span>
+              <div>
+                <p class="catalog-process__name">Entregamos</p>
+                <p class="catalog-process__desc">A toda la República, con guía de rastreo.</p>
+              </div>
+            </li>
+          </ol>
+
+          <a href="#contacto" class="catalog-process__cta">
+            Empezar mi pedido
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </aside>
+
+      </div>
+
+    </div>
+
+    <!-- CTA de cierre del catálogo: fondo azul marino a todo el ancho,
+         para personalizados que no encontraron su modelo exacto. -->
+    <div class="catalog-cta reveal">
+      <div class="container catalog-cta__inner">
+        <h3 class="catalog-cta__title">¿No encuentras el uniforme que buscas?</h3>
+        <p class="catalog-cta__desc">
+          Fabricamos uniformes totalmente personalizados para escuelas,
+          empresas e instituciones.
+        </p>
+        <a href="#contacto" class="btn btn--gold">
+          Solicitar cotización
+          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       FABRICAMOS
+       ====================================================================== -->
+  <section class="section section--cream" id="fabricamos">
+    <div class="container">
+
+      <div class="factory__intro">
+        <div class="section-head reveal">
+          <p class="eyebrow">Nuestra fábrica</p>
+          <h2 class="section-head__title" style="max-width: 10ch;">Fabricamos más que uniformes.</h2>
+        </div>
+        <p class="factory__intro-copy reveal">
+          Cada prenda que sale de nuestras instalaciones lleva consigo décadas de
+          oficio, tecnología de punta y el compromiso de un equipo que entiende
+          la diferencia entre producir ropa y fabricar identidad institucional.
+        </p>
+      </div>
+
+      <div class="factory-grid reveal">
+        <div class="photo-frame photo-frame--big">
+          <img src="https://loremflickr.com/900/1100/warehouse,fabric,storage/all?lock=301" alt="Almacén de rollos de tela ordenado por color">
+          <span class="photo-frame__caption">Corte de tela</span>
+        </div>
+        <div class="factory-grid__col">
+          <div class="photo-frame photo-frame--square">
+            <img src="https://loremflickr.com/600/600/sewing,machine,industrial/all?lock=302" alt="Máquinas de costura industrial">
+            <span class="photo-frame__caption">Costura industrial</span>
+          </div>
+          <div class="photo-frame photo-frame--square">
+            <img src="https://loremflickr.com/600/600/embroidery,patch,thread/all?lock=303" alt="Bordado institucional en proceso">
+            <span class="photo-frame__caption">Bordados institucionales</span>
+          </div>
+          <div class="photo-frame photo-frame--square">
+            <img src="https://loremflickr.com/600/600/thread,spool,textile/all?lock=304" alt="Rollos de hilo de distintos colores">
+            <span class="photo-frame__caption">Rollos de tela</span>
+          </div>
+          <div class="photo-frame photo-frame--square">
+            <img src="https://loremflickr.com/600/600/quality,control,garment/all?lock=305" alt="Revisión de control de calidad de una prenda">
+            <span class="photo-frame__caption">Control de calidad</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PERSONALIZACIÓN
+       Lista de técnicas a la izquierda (tabs); a la derecha, imagen +
+       descripción de la técnica activa. script.js controla el cambio de
+       pestaña y actualiza el panel derecho con los data-* del botón.
+       ====================================================================== -->
+  <section class="section section--cream" id="personalizacion">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <p class="eyebrow">Personalización</p>
+        <h2 class="section-head__title" style="max-width: 11ch;">Tu identidad, nuestra fabricación.</h2>
+        <p class="section-head__desc">
+          Transformamos la imagen de tu institución o empresa en prendas que
+          comunican profesionalismo. Cada técnica tiene sus ventajas — te
+          asesoramos para elegir la mejor.
+        </p>
+      </div>
+
+      <div class="custom-panel reveal">
+
+        <div class="custom-tabs" id="customTabs" role="tablist" aria-label="Técnicas de personalización">
+
+          <button type="button" class="custom-tab is-active" role="tab" aria-selected="true"
+            data-image="https://loremflickr.com/900/700/embroidery,patch,logo/all?lock=601"
+            data-caption="Logos, escudos y texto en hilo a color. Alta definición y durabilidad máxima. Archivo vectorial requerido.">
+            <span class="custom-tab__num">01</span>
+            <span class="custom-tab__body">
+              <span class="custom-tab__name">Bordado</span>
+              <span class="custom-tab__desc">Logos, escudos y texto en hilo a color. Alta definición y durabilidad máxima. Archivo vectorial requerido.</span>
+            </span>
+            <svg class="custom-tab__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <button type="button" class="custom-tab" role="tab" aria-selected="false"
+            data-image="https://loremflickr.com/900/700/sublimation,printing,fabric/all?lock=602"
+            data-caption="Impresión de diseños a todo color directo en la tela. Ideal para gráficos complejos y degradados.">
+            <span class="custom-tab__num">02</span>
+            <span class="custom-tab__body">
+              <span class="custom-tab__name">Sublimación</span>
+            </span>
+            <svg class="custom-tab__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <button type="button" class="custom-tab" role="tab" aria-selected="false"
+            data-image="https://loremflickr.com/900/700/screen,printing,textile/all?lock=603"
+            data-caption="Impresión por capas de tinta sobre la prenda. Óptima para pedidos grandes de un mismo diseño.">
+            <span class="custom-tab__num">03</span>
+            <span class="custom-tab__body">
+              <span class="custom-tab__name">Serigrafía</span>
+            </span>
+            <svg class="custom-tab__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <button type="button" class="custom-tab" role="tab" aria-selected="false"
+            data-image="https://loremflickr.com/900/700/vinyl,textile,heat,press/all?lock=604"
+            data-caption="Corte de vinil térmico aplicado con calor. Buen acabado para tirajes cortos y nombres individuales.">
+            <span class="custom-tab__num">04</span>
+            <span class="custom-tab__body">
+              <span class="custom-tab__name">Vinil Textil</span>
+            </span>
+            <svg class="custom-tab__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <button type="button" class="custom-tab" role="tab" aria-selected="false"
+            data-image="https://loremflickr.com/900/700/fashion,design,textile,pattern/all?lock=605"
+            data-caption="Desarrollo de un diseño exclusivo para tu institución, desde el patrón hasta el acabado final.">
+            <span class="custom-tab__num">05</span>
+            <span class="custom-tab__body">
+              <span class="custom-tab__name">Diseños Exclusivos</span>
+            </span>
+            <svg class="custom-tab__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+        </div>
+
+        <div class="custom-preview">
+          <div class="custom-preview__media">
+            <img id="customPreviewImage" src="https://loremflickr.com/900/700/embroidery,patch,logo/all?lock=601" alt="Muestra de bordado institucional">
+          </div>
+          <div class="custom-preview__body">
+            <p class="eyebrow" id="customPreviewLabel" style="margin-bottom: var(--space-2);">Bordado</p>
+            <p class="custom-preview__desc" id="customPreviewDesc">Logos, escudos y texto en hilo a color. Alta definición y durabilidad máxima. Archivo vectorial requerido.</p>
+            <a href="#contacto" class="btn btn--gold">
+              Cotizar este servicio
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       DISTRIBUIDORES
+       ====================================================================== -->
+  <section class="section section--navy distributors" id="distribuidores">
+    <div class="container">
+      <div class="distributors__grid">
+
+        <div class="reveal">
+          <p class="eyebrow eyebrow--light">Para distribuidores</p>
+          <h2 class="section-head__title" style="color: var(--color-paper-900); max-width: 12ch;">
+            Crece tu negocio con Belmen
+          </h2>
+          <p class="distributors__desc">
+            Únete a nuestra red de distribuidores autorizados y accede a precios
+            de fábrica, respaldo logístico y productos con demanda garantizada
+            todo el año.
+          </p>
+
+          <ul class="checklist">
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Precios directos de fábrica sin intermediarios
+            </li>
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Compra mínima desde 12 piezas por modelo
+            </li>
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Productos de alta rotación con demanda constante
+            </li>
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Catálogo exclusivo para distribuidores con reposición garantizada
+            </li>
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Apoyo con material de ventas y muestras físicas
+            </li>
+            <li class="checklist__item">
+              <span class="checklist__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span>
+              Crédito disponible para distribuidores frecuentes
+            </li>
+          </ul>
+
+          <a href="#contacto" class="btn btn--gold">
+            Quiero ser distribuidor
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="distributors__media reveal">
+          <div class="photo-frame photo-frame--tall">
+            <img src="https://loremflickr.com/700/1000/school,uniform/all?lock=401" alt="Uniformes doblados y organizados, listos para distribución">
+          </div>
+          <div class="photo-frame photo-frame--square">
+            <img src="https://loremflickr.com/700/700/school,uniform/all?lock=402" alt="Exhibidor de uniformes en punto de venta">
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <div>
+              <p class="stat-card__number">800+</p>
+              <p class="stat-card__label">Distribuidores activos</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       CONTACTO
+       El formulario no procesa pagos ni compras: solo arma un mensaje de
+       WhatsApp con los datos capturados (ver js/script.js).
+       ====================================================================== -->
+  <section class="section section--navy contact" id="contacto">
+    <div class="container">
+      <div class="contact__grid">
+
+        <div class="reveal">
+          <p class="eyebrow eyebrow--light">Contacto mayorista</p>
+          <h2 class="section-head__title" style="color: var(--color-paper-900); max-width: 14ch;">
+            Solicita nuestro catálogo mayorista
+          </h2>
+          <p class="contact__desc">
+            Completa el formulario y te enviamos el catálogo completo con precios
+            mayoristas, mínimos de compra y tiempos de producción directamente
+            a tu WhatsApp.
+          </p>
+
+          <div class="contact-info">
+            <div class="contact-info__item">
+              <span class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <p class="contact-info__label">WhatsApp directo</p>
+                <p class="contact-info__value">+52 1 (33) XXX-XXXX</p>
+              </div>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <p class="contact-info__label">Planta de producción</p>
+                <p class="contact-info__value">Guadalajara, Jalisco — México</p>
+              </div>
+            </div>
+
+            <div class="contact-info__item">
+              <span class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </span>
+              <div>
+                <p class="contact-info__label">Cobertura</p>
+                <p class="contact-info__value">Envíos a toda la República Mexicana</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label class="field__label" for="fName">Nombre completo</label>
+            <input class="field__input" type="text" id="fName" name="nombre" placeholder="Ej. Carlos Ramírez" required>
+          </div>
+          <div class="field">
+            <label class="field__label" for="fCompany">Empresa / institución</label>
+            <input class="field__input" type="text" id="fCompany" name="empresa" placeholder="Ej. Colegio Benito Juárez">
+          </div>
+          <div class="field">
+            <label class="field__label" for="fCity">Ciudad</label>
+            <input class="field__input" type="text" id="fCity" name="ciudad" placeholder="Ej. Monterrey, N.L.">
+          </div>
+          <div class="field">
+            <label class="field__label" for="fWhatsapp">WhatsApp</label>
+            <input class="field__input" type="tel" id="fWhatsapp" name="whatsapp" placeholder="Ej. +52 81 XXXX XXXX" required>
+          </div>
+
+          <button type="submit" class="btn btn--success">
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.8 8.8 0 0 0-7.63 13.2L3 21l3.9-1.36a8.83 8.83 0 0 0 5.15 1.64h.02A8.85 8.85 0 0 0 20.92 12.7a8.79 8.79 0 0 0-3.32-6.38ZM12.05 20a7.3 7.3 0 0 1-3.75-1.03l-.27-.16-2.79.98.94-2.74-.18-.28A7.34 7.34 0 1 1 19.4 12.7 7.36 7.36 0 0 1 12.05 20Zm3.98-5.44c-.22-.11-1.28-.63-1.48-.7-.2-.07-.34-.11-.49.11-.14.22-.56.7-.69.84-.13.15-.25.16-.47.05a5.98 5.98 0 0 1-1.76-1.08 6.6 6.6 0 0 1-1.22-1.52c-.13-.22 0-.34.1-.45.1-.1.22-.25.33-.38.1-.12.14-.22.21-.36.07-.14.04-.27-.02-.38-.06-.11-.49-1.18-.67-1.62-.18-.42-.36-.36-.49-.37h-.42a.8.8 0 0 0-.58.27 2.44 2.44 0 0 0-.76 1.82c0 1.07.78 2.11.89 2.26.11.15 1.53 2.34 3.71 3.28.52.22.92.36 1.24.46.52.16 1 .14 1.37.09.42-.06 1.28-.52 1.46-1.03.18-.5.18-.94.13-1.03-.05-.09-.2-.15-.42-.25Z"/></svg>
+            Enviar solicitud por WhatsApp
+          </button>
+          <p class="form__note">Respondemos en menos de 2 horas en horario hábil.</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#inicio" class="brand" aria-label="Belmen — Ir al inicio">
+            <img src="assets/logo-belmen-transparent.png" alt="Belmen">
+          </a>
+          <p class="footer__tagline">
+            Fabricante directo de uniformes escolares, institucionales y
+            personalizados. Cobertura nacional.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer__heading">Navegación</p>
+          <div class="footer__links">
+            <a href="#nosotros">Nosotros</a>
+            <a href="#colecciones">Catálogo</a>
+            <a href="#fabricamos">Fabricamos</a>
+            <a href="#personalizacion">Personalización</a>
+            <a href="#distribuidores">Distribuidores</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Catálogo</p>
+          <div class="footer__links">
+            <a href="#colecciones" data-filter-link="escolares">Escolares</a>
+            <a href="#colecciones" data-filter-link="deportivos">Deportivos</a>
+            <a href="#colecciones" data-filter-link="institucionales">Institucionales</a>
+            <a href="#colecciones" data-filter-link="personalizados">Personalizados</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Contacto</p>
+          <div class="footer__links">
+            <a href="#contacto">Guadalajara, Jalisco — México</a>
+            <a href="#contacto">+52 1 (33) XXX-XXXX</a>
+            <a href="#contacto">Solicitar catálogo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 Belmen. Todos los derechos reservados.</p>
+        <p>Fabricante directo — Cobertura nacional</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       MODAL DE PRODUCTO
+       Se llena dinámicamente desde js/script.js con los datos de la
+       tarjeta (.product-card) sobre la que se hizo clic. Un solo modal
+       reutilizado para las 12 tarjetas del catálogo.
+       ====================================================================== -->
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal__backdrop" data-modal-close></div>
+
+    <div class="product-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <button class="product-modal__close" type="button" data-modal-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="product-modal__media">
+        <span class="badge" id="productModalBadge" hidden></span>
+        <img id="productModalImage" src="" alt="">
+      </div>
+
+      <div class="product-modal__body">
+        <h3 class="product-modal__title" id="productModalTitle"></h3>
+        <div class="product-modal__meta" id="productModalMeta"></div>
+        <p class="product-modal__desc" id="productModalDesc"></p>
+        <a href="#contacto" class="btn btn--gold" data-modal-close>
+          Solicitar cotización
+          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
