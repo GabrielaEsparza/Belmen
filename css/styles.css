@@ -83,10 +83,10 @@
   --text-base: 1rem;      /* 16px — párrafos */
   --text-md:   1.125rem;  /* 18px — párrafos destacados */
   --text-lg:   1.375rem;  /* 22px — subtítulos */
-  --text-xl:   1.75rem;   /* 28px — títulos de tarjeta / sección pequeña */
-  --text-2xl:  2.25rem;   /* 36px — títulos de sección (H2) */
-  --text-3xl:  3rem;      /* 48px — título de sección grande */
-  --text-4xl:  3.75rem;   /* 60px — título del Hero (desktop) */
+  --text-xl:   clamp(1.5rem, 1.35rem + 0.6vw, 1.75rem);    /* 24–28px — títulos de tarjeta / sección pequeña */
+  --text-2xl:  clamp(1.75rem, 1.5rem + 1.1vw, 2.25rem);    /* 28–36px — títulos de sección (H2) */
+  --text-3xl:  clamp(2rem, 1.6rem + 1.8vw, 3rem);          /* 32–48px — título de sección grande */
+  --text-4xl:  clamp(2.25rem, 1.6rem + 2.9vw, 3.75rem);    /* 36–60px — título del Hero (fluido en todo ancho) */
 
   /* Peso de fuente */
   --weight-regular: 400;
@@ -165,6 +165,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -188,6 +190,7 @@ body {
   background: var(--color-cream-50);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 img {
@@ -368,7 +371,10 @@ input:focus-visible {
 .btn--outline-dark {
   background: transparent;
   border-color: var(--color-navy-900);
-  color: var(--color-navy-900);/* Variante "solo texto" — usada en el botón de Cotizar del header, para
+  color: var(--color-navy-900);
+}
+
+/* Variante "solo texto" — usada en el botón de Cotizar del header, para
    que no compita visualmente con el fondo transparente/navy del navbar */
 .btn--text-gold {
   background: transparent;
@@ -384,9 +390,6 @@ input:focus-visible {
   color: var(--color-gold-600);
   border-bottom-color: var(--color-gold-500);
 }
-}
-
-
 
 .btn--outline-dark:hover {
   background: var(--color-navy-900);
@@ -1756,6 +1759,25 @@ input:focus-visible {
    6. RESPONSIVE
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1200px — pantallas medianas: el grid de catálogo empieza a apretarse
+   antes de llegar a tablet, así que achicamos el sidebar de proceso.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .catalog-layout { grid-template-columns: 1fr 230px; gap: var(--space-8); }
+}
+
+/* Entre el ancho de escritorio completo y el punto donde aparece el menú
+   hamburguesa (960px), el nav con 6 links + botón "Cotizar" puede apretarse.
+   Reducimos el espaciado entre links para que no se encimen. */
+@media (max-width: 1160px) and (min-width: 961px) {
+  .nav { gap: var(--space-5); }
+  .header__actions { gap: var(--space-3); }
+}
+
+/* --------------------------------------------------------------------------
+   1080px — tablet horizontal
+   -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .footer__top { grid-template-columns: 1.4fr 1fr 1fr; }
@@ -1776,12 +1798,16 @@ input:focus-visible {
 
   .custom-panel { grid-template-columns: 1fr; }
   .custom-preview { min-height: 320px; }
+
+  .distributors__grid { gap: var(--space-10); }
+  .contact__grid { gap: var(--space-12); }
 }
 
+/* --------------------------------------------------------------------------
+   960px — tablet vertical: aquí entra el menú hamburguesa
+   -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
   :root {
-    --text-4xl: 2.75rem;
-    --text-3xl: 2.25rem;
     --header-height: 72px;
   }
 
@@ -1811,7 +1837,14 @@ input:focus-visible {
     padding: var(--space-8) var(--container-padding);
     background: var(--color-navy-900);
     overflow-y: auto;
+    z-index: 99;
   }
+
+  .nav.nav--open .nav__link {
+    font-size: var(--text-lg);
+  }
+
+  .brand img { height: 46px; }
 
   .about__grid,
   .factory__intro,
@@ -1841,15 +1874,64 @@ input:focus-visible {
   .product-modal__media {
     min-height: 220px;
   }
+
+  .distributors__media,
+  .distributors__media .photo-frame:first-child {
+    grid-row: auto;
+  }
 }
 
+/* --------------------------------------------------------------------------
+   780px — donde el layout de dos columnas ya no cabe cómodo
+   -------------------------------------------------------------------------- */
+@media (max-width: 780px) {
+  .section { padding-block: var(--space-20); }
+
+  .hero { align-items: center; text-align: left; }
+  .hero__content { padding-block: var(--space-10); }
+  .hero__actions { flex-wrap: wrap; }
+  .hero__actions .btn { flex: 1 1 220px; }
+
+  .category-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+
+  .custom-tab { padding: var(--space-4) var(--space-5); }
+  .custom-tab__desc { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   640px — móvil
+   -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
+  :root {
+    --header-height: 64px;
+  }
+
   .section { padding-block: var(--space-16); }
 
-  .hero { min-height: 100vh; }
-  .hero__actions { flex-direction: column; align-items: stretch; }
+  .brand img { height: 38px; }
 
-  .stats { grid-template-columns: repeat(2, 1fr); }
+  .hero { min-height: 100vh; }
+  .hero__title { max-width: none; }
+  .hero__desc { max-width: none; }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { flex: 1 1 auto; }
+
+  /* Los botones traen textos largos en mayúsculas con white-space:nowrap
+     (pensado para desktop). En móvil eso fuerza un ancho mínimo mayor
+     que la pantalla y genera scroll horizontal en toda la página.
+     Permitimos que el texto haga salto de línea en vez de desbordar. */
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6) var(--space-4);
+  }
+  .stats__item { padding-inline-end: 0; }
 
   .photo-grid,
   .factory-grid,
@@ -1862,21 +1944,56 @@ input:focus-visible {
 
   .distributors__media .photo-frame:first-child { grid-row: auto; }
 
+  .about__chips { gap: var(--space-2); }
+
   .collections__head { align-items: flex-start; }
 
-  .filters { gap: var(--space-5); overflow-x: auto; }
+  .filters {
+    gap: var(--space-5);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-2);
+  }
+  .filters::-webkit-scrollbar { height: 4px; }
 
   .catalog-toolbar { flex-direction: column; align-items: stretch; }
   .catalog-search { max-width: none; }
   .catalog-process__list { grid-template-columns: 1fr; }
   .catalog-cta__title { font-size: var(--text-xl); }
+  .catalog-cta__desc { max-width: none; }
 
   .custom-tab { padding: var(--space-5); gap: var(--space-3); }
-  .custom-tab__desc { display: none; }
-  .custom-preview { min-height: 260px; }
+  .custom-preview { min-height: 240px; }
   .custom-preview__body { padding: var(--space-6); }
 
-  .footer__top { grid-template-columns: 1fr; }
+  .distributors__desc,
+  .contact__desc { max-width: none; }
+
+  .contact-form { padding: var(--space-6); }
+
+  .product-modal { padding: var(--space-4); }
+  .product-modal__dialog { max-height: 94vh; }
+  .product-modal__media { min-height: 180px; }
+  .product-modal__body { padding: var(--space-6); }
+
+  .footer { padding-block: var(--space-12) var(--space-6); }
+  .footer__top { grid-template-columns: 1fr; gap: var(--space-8); }
 
   .footer__bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
+   400px — teléfonos angostos: un último ajuste para que nada se apriete
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+  .hero__eyebrow { font-size: 0.7rem; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats__number { font-size: var(--text-xl); }
+
+  .btn { padding: var(--space-3) var(--space-5); font-size: var(--text-xs); }
+
+  .category-grid,
+  .product-grid { gap: var(--space-4); }
+
+  .contact-form { padding: var(--space-5); }
 }
