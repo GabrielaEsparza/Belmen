@@ -558,7 +558,7 @@ input:focus-visible {
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 68vh;
   display: flex;
   align-items: flex-end;
   padding-top: var(--header-height);
@@ -590,7 +590,7 @@ input:focus-visible {
 
 .hero__content {
   width: 100%;
-  padding-block: var(--space-16);
+  padding-block: var(--space-10);
 }
 
 .hero__eyebrow {
@@ -602,7 +602,7 @@ input:focus-visible {
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--color-paper-500);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 .hero__eyebrow::before {
   content: '';
@@ -627,14 +627,14 @@ input:focus-visible {
   max-width: 46ch;
   font-size: var(--text-md);
   color: var(--color-paper-500);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-10);
 }
 
 /* Barra de cifras (50,000+ prendas/mes, etc.) */
@@ -1911,7 +1911,7 @@ input:focus-visible {
 
   .brand img { height: 38px; }
 
-  .hero { min-height: 100vh; }
+  .hero { min-height: 78vh; }
   .hero__title { max-width: none; }
   .hero__desc { max-width: none; }
   .hero__actions { flex-direction: column; align-items: stretch; }
